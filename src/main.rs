@@ -7,6 +7,7 @@ extern crate reqwest;
 
 // See https://www.gitignore.io/docs
 const GITIGNORE_BASEURL: &str = "https://www.gitignore.io/api";
+const GITIGNORE_LIST_URL: &str = "https://www.gitignore.io/api/list";
 
 error_chain!{
     foreign_links {
@@ -15,22 +16,29 @@ error_chain!{
     }
 }
 
+fn list() -> reqwest::Result<reqwest::Response> {
+    reqwest::get(GITIGNORE_LIST_URL)
+}
+
+fn search(search_items: &Vec<String>) -> reqwest::Result<reqwest::Response> {
+    let base_url = GITIGNORE_BASEURL.to_owned();
+    let search_strs = search_items.join(",");
+    let url = base_url + "/" + &search_strs;
+    reqwest::get(&url)
+}
+
 fn run() -> Result<()> {
     env_logger::init().expect("Failed to initialize logger");
 
     let args: Vec<String> = env::args().skip(1).collect();
 
-    let base_url = GITIGNORE_BASEURL.to_owned();
-    let url = if args.len() == 0 {
-        base_url + "/list"
+    let res = if args.len() == 0 {
+        list()
     } else {
-        let search_strs = args.join(",");
-        base_url + "/" + &search_strs
+        search(&args)
     };
 
-    let mut res = reqwest::get(&url)?;
-
-    let _ = std::io::copy(&mut res, &mut std::io::stdout())?;
+    let _ = std::io::copy(&mut res?, &mut std::io::stdout())?;
     Ok(())
 }
 
