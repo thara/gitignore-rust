@@ -2,6 +2,12 @@
 name = "ignor"
 version = "0.1.0"
 authors = ["Tomochika Hara <rust@thara.jp>"]
+description = "a command line utility to fetch .gitignore tempaltes from gitignore.io. "
+repository = "https://github.com/thara/ignor"
+readme = "README.md"
+keywords = ["git", "gitignore", "cli"]
+license = "MIT"
+license-file = "LICENSE"
 
 [dependencies]
 reqwest = "0.8.1"
