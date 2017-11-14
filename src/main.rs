@@ -4,7 +4,7 @@ use std::env;
 extern crate error_chain;
 extern crate env_logger;
 
-extern crate gitignore;
+extern crate ignor;
 extern crate reqwest;
 
 error_chain!{
@@ -20,9 +20,9 @@ fn run() -> Result<()> {
     let args: Vec<String> = env::args().skip(1).collect();
 
     let res = if args.len() == 0 {
-        gitignore::list()
+        ignor::list()
     } else {
-        gitignore::search(&args)
+        ignor::search(&args)
     };
 
     let _ = std::io::copy(&mut res?, &mut std::io::stdout())?;
