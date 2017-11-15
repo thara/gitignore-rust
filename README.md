@@ -39,12 +39,12 @@ $ ignor rust intellij > .gitignore
 
 ## Use as a library
 
-`ignor` is written by Rust and also is able to used as a Rust library.   
+`ignor` is written by Rust and also is able to used as a Rust library.
 
 (`ignor` uses [reqwest](https://crates.io/crates/reqwest) of http client)
 
 
-```
+```rust
 extern crate ignor;
 extern crate reqwest;
 
