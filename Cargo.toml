@@ -1,6 +1,6 @@
 [package]
 name = "ignor"
-version = "0.1.0"
+version = "0.2.0"
 authors = ["Tomochika Hara <rust@thara.jp>"]
 description = "a command line utility to fetch .gitignore tempaltes from gitignore.io. "
 repository = "https://github.com/thara/ignor"
